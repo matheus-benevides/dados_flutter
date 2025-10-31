@@ -201,11 +201,39 @@ class _EstadoTelaJogoDeDados extends State<TelaJogodeDados>{
                   const Icon(Icons.error, size: 40),
                 ),
               );
-            }),
+            }).toList(), // Converte o resultado de volta para um lista de widgets
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(title: const Text("Jogo de Dados")),
+      body: Column(
+        children: [
+          Row(
+            children: [
+              _constuirColunaJogador(widget.nomeJogador1, _lancamentosJogador1),
+              _constuirColunaJogador(widget.nomeJogador2, _lancamentosJogador2),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Text(
+            _mensagemResultado,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          const Spacer(), // Empurra o botão para a parte debaixo da tela.
+          ElevatedButton(
+            onPressed: _lancarDados,
+            style: ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50)),
+            child: const Text('Jogar Dados'),
           )
         ],
       )
     );
   }
-
 }
